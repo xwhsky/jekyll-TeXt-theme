@@ -8,9 +8,9 @@
 ## Base settings ##
 # url:  # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl: '/'
-title: Someone's blog
+title: xwhsky's blog
 description: > #this means to ignore newlines until "nav_lists:"
-  Someone's Blog
+  giser, coder, newer
 
 nav_lists:
   - title: About
@@ -26,18 +26,22 @@ timezone: Asia/Shanghai
 
 ## Author & social ##
 author:
-  name: Someone
+  name: xwhsky
   # email:  #your Email address e.g. someone@site.com
   # facebook:  #your Facebook username
   # twitter:  #your Twitter username
   # github:  #your GitHub username
+  github: xwhsky
+  twitter: xwhsky
+  stackoverflow: users/2191975/xwhsky # your stackoverflow profile, e.g. "users/50476/bart-kiers"
+
   # googleplus:  #your Google+ username
   # weibo:  #your Weibo username
   # douban:  #your Douban username
   # linkedin:  #your Linkedin username
 
 ## Comment system (Disqus) ##
-disqus:
+disqus: xwhsky
   # shortname:  #the Disqus shortname for the site
 
 ## Google Analytics ##
