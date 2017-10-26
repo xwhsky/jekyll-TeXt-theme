@@ -4,6 +4,7 @@ title: .NET单变量2G内存限制
 category: C#
 permalink: /program/
 picture_frame: shadow #图片框样式，加阴影
+typora-copy-images-to: ..\..\images\_posts
 ---
 
 ## 问题来源
@@ -32,9 +33,7 @@ double[] array = new double[20000*20000];
 
 同样出现内存溢出现象。
 
-![donet-outofmemory](../../images/_posts/donet-outofmemory.png)
-
-
+![donet-outofmemory](https://raw.githubusercontent.com/xwhsky/xwhsky.github.io/master/images/_posts/donet-outofmemory.png)
 
 ## 解决方案
 
