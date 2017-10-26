@@ -2,9 +2,10 @@
 layout: post
 title: GWR在PM2.5分析中的文献综述
 key: 20170321
-tags: gwr
+tags: gwr gtwr
 picture_frame: shadow
 ---
+
 
 # 新思路
 
