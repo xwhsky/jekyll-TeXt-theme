@@ -15,7 +15,7 @@ picture_frame: shadow #图片框样式，加阴影
 以最小二乘法为例，需要求解帽子矩阵：
 
 ```c#
-var  hatmatrix = x_normalize.Multiply(x_normalize.Transpose().Multiply(x_normalize).Inverse()).Multiply(x_normalize.Transpose());
+var hatmatrix = x_normalize.Multiply(x_normalize.Transpose().Multiply(x_normalize).Inverse()).Multiply(x_normalize.Transpose());
 ```
 
 
@@ -32,7 +32,9 @@ double[] array = new double[20000*20000];
 
 同样出现内存溢出现象。
 
-![donet-outofmemory](D:\github\xwhsky.github.io\images\_posts\donet-outofmemory.png)
+![donet-outofmemory](../../images/_posts/donet-outofmemory.png)
+
+
 
 ## 解决方案
 
