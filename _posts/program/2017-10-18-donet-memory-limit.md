@@ -14,7 +14,7 @@ picture_frame: shadow #图片框样式，加阴影
 
 以最小二乘法为例，需要求解帽子矩阵：
 
-```C#
+```c#
 var  hatmatrix = x_normalize.Multiply(x_normalize.Transpose().Multiply(x_normalize).Inverse()).Multiply(x_normalize.Transpose());
 ```
 
@@ -26,7 +26,7 @@ var  hatmatrix = x_normalize.Multiply(x_normalize.Transpose().Multiply(x_normali
 
 以创建20000 X 20000的双精度数组，
 
-```C#
+```c#
 double[] array = new double[20000*20000];
 ```
 
@@ -44,15 +44,17 @@ double[] array = new double[20000*20000];
 
 ```xml
 <configuration>
-	<runtime>
-		<gcAllowVeryLargeObjects enable="true"/>
-	</runtime>
+  <runtime>
+    <gcAllowVeryLargeObjects enable="true"/>
+  </runtime>
 </configuration>
 ```
 
 
 
-详细信息，可参考https://bhrnjica.net/2012/07/22/with-net-4-5-10-years-memory-limit-of-2-gb-is-over/
+详细信息，可参考 https://bhrnjica.net/2012/07/22/with-net-4-5-10-years-memory-limit-of-2-gb-is-over/
+
+
 
 
 
