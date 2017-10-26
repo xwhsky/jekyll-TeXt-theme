@@ -15,7 +15,8 @@ picture_frame: shadow #图片框样式，加阴影
 以最小二乘法为例，需要求解帽子矩阵：
 
 ```c#
-var hatmatrix = x_normalize.Multiply(x_normalize.Transpose().Multiply(x_normalize).Inverse()).Multiply(x_normalize.Transpose());
+var hatmatrix = x_normalize.Multiply(x_normalize.Transpose().
+                                     				Multiply(x_normalize).Inverse()).Multiply(x_normalize.Transpose());
 ```
 
 
