@@ -1,10 +1,15 @@
-.NET性能优化的几点建议
-
-赵劼 @ 2017.10
+---
+layout: post
+title: .NET性能优化的几点建议
+category: c#,optimization
+---
 
 > 本文引用自赵劼老师2017年QCon演讲的PPT内容
 
+赵劼 @ 2017.10
+
 ###自我介绍
+
 - 赵劼 / 老赵 / 赵姐夫 / Jeffrey Zhao
 - 2011年前：互联网
 - 2011年起：IBM / JPMorgan Chase & Co.
