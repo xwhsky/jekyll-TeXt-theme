@@ -8,6 +8,10 @@ tag: c# optimization
 >
 > [原文阅读](http://zhaojie.me/dotnet-perf/slides/index.html#/7)
 
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
 ## 自我介绍
 
 - 赵劼 / 老赵 / 赵姐夫 / Jeffrey Zhao
