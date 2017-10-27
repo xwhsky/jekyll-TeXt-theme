@@ -15,7 +15,7 @@ category: c#,optimization
 - 2011年起：IBM / JPMorgan Chase & Co.
 - 编程语言，代码质量，性能优化……
 - 云计算，机器学习，大数据，AI……一窍不通
-### 说在前面
+# 说在前面
 - 先评测，再优化
 - 专注优化瓶颈
 - 重视性能，保持性能导向思维
@@ -24,9 +24,9 @@ category: c#,optimization
 >
 >We should forget about small efficiencies, say about 97% of the time: premature optimization is the root of all evil. *Yet we should not pass up our opportunities in that critical 3%.*
 
-### 零：兵来将挡，水来土掩
+# 零：兵来将挡，水来土掩
 
-#### 字符串拼接与StringBuilder
+## 字符串拼接与StringBuilder
 
 ```c#
 string Concat(string a, string b, string c, string d) {
@@ -65,9 +65,9 @@ string Concat(int n, string a, string b, string c, string d) {
 }
 ```
 
-### 一：了解内存布局
+# 一：了解内存布局
 
-#### 老生常谈
+## 老生常谈
 
 - 引用类型
   - 分配在托管堆
@@ -79,7 +79,7 @@ string Concat(int n, string a, string b, string c, string d) {
   - 没有头数据（体积紧凑）
 - 注意：分配位置（堆/栈）为实现细节
 
-#### 获取对象尺寸
+## 获取对象尺寸
 
 ```assembly
 > !dumpheap -stat
@@ -117,7 +117,7 @@ GC.KeepAlive(obj);
 - 优点：使用简单，包含对齐信息。
 - 缺点：丢失细节，包含额外对象。
 
-#### 引用类型对象布局
+## 引用类型对象布局
 
 ```C#
 class Person {
@@ -128,7 +128,7 @@ class Person {
 
 ![obj-layout](http://zhaojie.me/dotnet-perf/slides/img/obj-layout.svg)
 
-#### 引用类型对象尺寸
+## 引用类型对象尺寸
 
 ``` C#
 class MyType1 {
@@ -146,7 +146,7 @@ class MyType3 {
 } // 32 bytes
 ```
 
-#### 基础类型数组尺寸
+## 基础类型数组尺寸
 
 ```C#
 new int[0]; // 24 bytes (8 header + 8 MT + 4 length + 4)
@@ -165,7 +165,7 @@ new bool[9]; // 40 bytes (24 + 1 * 9 + 7). So bool = byte?
 // Consider using BitArray
 ```
 
-#### 自定义值类型数组尺寸
+## 自定义值类型数组尺寸
 
 ```C#
 struct MyStruct {
@@ -215,7 +215,7 @@ Fields:
 ...  400004c        d       System.Boolean ... Field3
 ```
 
-#### 如何改进？
+## 如何改进？
 
 ```c#
 class MyItem { }
@@ -250,13 +250,13 @@ for (var item = head; item != null; item = item.Next) {
 }
 ```
 
-#### 改进后
+## 改进后
 
 - 节省内存（可忽略）、无大对象（重要）
 - 指令少：少一层间接访问，无数组越界检查
 - 布局紧凑：CPU缓存利用得当
 
-#### 延伸：双向链表
+## 延伸：双向链表
 
 ```C#
 abstract class InplaceLinkedListNode<T>
@@ -272,7 +272,7 @@ class InplaceLinkedList<T>
 class MyItem : InplaceLinkedListNode<MyItem> { }
 ```
 
-#### 延伸：二叉树
+## 延伸：二叉树
 
 ```C#
 abstract class InplaceBinaryTreeNode<T>
@@ -289,13 +289,13 @@ class InplaceAvlTree<T>
 class MyItem : InplaceBinaryTreeNode<MyItem> { }
 ```
 
-###二：迎合GC编程
+# 二：迎合GC编程
 
 > **Roslyn Team: **
 >
 > You might think that building a responsive .NET Framework app is all about algorithms, such as using quick sort instead of bubble sort, but that's not the case. The biggest factor in building a responsive app is allocating memory, especially when your app is very large or processes large amounts of data.																		
 
-#### GC in CLR vs. OpenJDK
+## GC in CLR vs. OpenJDK
 
 - 缺点：配置选项少。
   - Workstation GC vs. Server GC
@@ -304,14 +304,14 @@ class MyItem : InplaceBinaryTreeNode<MyItem> { }
   - 与其调整参数，不如迎合GC编程
   - 拥有更多避免内存分配的特性
 
-####老生常谈：托管堆
+## 老生常谈：托管堆
 
 - Gen 0：新对象，短期对象
 - Gen 1：Gen 0和Gen 2之间的过渡
 - Gen 2：老对象，长期对象
 - 回收：扫描，清理，压缩
 
-#### 老生常谈：大对象堆（LOH）
+## 老生常谈：大对象堆（LOH）
 
 - 保存大于85K的对象
 - 随着Gen 2回收而回收
@@ -322,7 +322,7 @@ class MyItem : InplaceBinaryTreeNode<MyItem> { }
 GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.CompactOnce;
 ```
 
-#### 特点
+## 特点
 
 - Gen 0与Gen 1：频率高，速度快
 - 大对象堆与Gen 2：频率低，速度慢
@@ -330,7 +330,7 @@ GCSettings.LargeObjectHeapCompactionMode = GCLargeObjectHeapCompactionMode.Compa
   - 避免少部分有用对象引用大量无用对象
   - 减少老代对象指向新代对象的引用
 
-####如何避免垃圾回收
+## 如何避免垃圾回收
 
 - 避免内存分配
   - 绝大部分垃圾回收由内存分配引起
@@ -351,7 +351,7 @@ GC.TryStartNoGCRegion(...);
 GC.EndNoGCRegion();
 ```
 
-####例：获取CPU使用率
+## 例：获取CPU使用率
 
 ```c#
 // .NET 4.5.2-
@@ -367,7 +367,7 @@ for (var i = 0; i < 10000; i++) {
 
 ![img](http://zhaojie.me/dotnet-perf/slides/img/perf-counter-allocations.png)
 
-####关注分配细节
+## 关注分配细节
 
 ```C#
 void Print(int i) {
@@ -406,13 +406,13 @@ class Light {
 }
 ```
 
-####其他常见内存分配
+## 其他常见内存分配
 
 - 委托（Delegate）
 - 匿名函数（Lambda表达式）
 - 字符串操作
 
-#### 如何优化？
+## 如何优化？
 
 ```c#
 string Concat(int n, string a, string b, string c, string d) {
@@ -445,7 +445,7 @@ string Concat(int n, string a, string b, string c, string d) {
 }
 ```
 
-####Roslyn：重用StringBuilder
+## Roslyn：重用StringBuilder
 
 ```c#
 static StringBuilder AcquireBuilder() {
@@ -481,13 +481,13 @@ string Concat(int n, string a, string b, string c, string d) {
 }
 ```
 
-####复用（大）对象
+## 复用（大）对象
 
 - 例：StringBuilder，字节数组，对象数组…
 - 线程专用，或线程安全栈
 - 一次分配到位，避免LOH碎片
 
-####如何优化？
+## 如何优化？
 
 ```c#
 void DoSomethingNeedsTempArrayOfLength<T>(int n) {
@@ -533,7 +533,7 @@ class ClassBuffer<T> : Buffer {
 }
 ```
 
-####避免LOH碎片
+## 避免LOH碎片
 
 - 预分配，避免自适应分配，例如
   - StringBuilder
@@ -542,7 +542,7 @@ class ClassBuffer<T> : Buffer {
 - 分配统一尺寸的对象，或
 - 统一尺寸的整数倍
 
-####理想中的对象生命周期
+## 理想中的对象生命周期
 
 - 极短：分配后立即丢弃
   - 不会被GC扫描到
@@ -553,7 +553,7 @@ class ClassBuffer<T> : Buffer {
   - 快速提升至Gen 2后永久保留，避免压缩
   - 分配至LOH后永久保留，避免碎片
 
-####优化案例
+## 优化案例
 
 ```c#
 class Order {
@@ -566,7 +566,7 @@ class Order {
 // 50000 instances max, ~60M
 ```
 
-####优化案例（结果）
+## 优化案例（结果）
 
 ```c#
 struct OrderData {
@@ -597,7 +597,7 @@ struct Order {
 } // zero in heap, 4 bytes in stack
 ```
 
-####优化后
+## 优化后
 
 - 优点
   - 更少的对象
@@ -609,7 +609,7 @@ struct Order {
   - 驻留内存较多
   - 重用存储空间带来额外复杂度
 
-####延伸：双向链表
+## 延伸：双向链表
 
 ```c#
 var list = new LinkedList<int>();
@@ -654,7 +654,7 @@ class ArrayLinkedList<T> {
 // nodes are kept closely (probably same cache line) in heap
 ```
 
-####延伸：二叉树
+## 延伸：二叉树
 
 ```c#
 class ArrayAvlTree<T> {
@@ -672,9 +672,9 @@ class ArrayAvlTree<T> {
 }
 ```
 
-###三、编写不通用的代码
+# 三、编写不通用的代码
 
-####代码调用
+## 代码调用
 
 ```c#
 public class MyClass {
@@ -693,7 +693,7 @@ void CallVirtual(MyClass c) {
     c.VirtualMethod();
 }
 ```
-####代码调用（非虚方法）
+## 代码调用（非虚方法）
 
 ```c#
 void CallNormal(MyClass c) {
@@ -707,7 +707,7 @@ void CallNormal(MyClass c) {
 e8a2a4ffff  call 00007ffe`80c47b40 (MyClass.NormalMethod())
 ```
 
-####代码调用（虚方法）
+## 代码调用（虚方法）
 
 ```c#
 void CallVirtual(MyClass c) {
@@ -722,7 +722,7 @@ void CallVirtual(MyClass c) {
 ff5020    call qword [rax+0x20] ; address of target method
 ```
 
-####集合
+## 集合
 
 ```c#
 static ICollection<T> CreateCollection(IEnumerable<T> items) {
@@ -734,7 +734,7 @@ static ICollection<T> CreateCollection(IEnumerable<T> items) {
 >
 > In Visual Studio and the new compilers, analysis shows that many of the dictionaries contained a single element or were empty. An empty Dictionary has ten fields and occupies 48 bytes on the heap on an x86 machine. Dictionaries are great when you need a mapping or associative data structure with constant time lookup. However, when you have only a few elements, you waste a lot of space by using a Dictionary.
 
-####集合创建（Roslyn）
+## 集合创建（Roslyn）
 
 ```c#
 static ICollection<string> CreateReadOnlyMemberNames(
@@ -753,7 +753,7 @@ static ICollection<string> CreateReadOnlyMemberNames(
 }
 ```
 
-####FrugalList/Map in WPF
+## FrugalList/Map in WPF
 
 ```c#
 class FrugalListBase<T> { }
@@ -774,7 +774,7 @@ class HashObjectMap : FrugalMapBase { }
 class LargeSortedObjectMap : FrugalMapBase { }
 ```
 
-####不通用的迭代器
+## 不通用的迭代器
 
 ```c#
 class MyCollection<T> : IEnumerable<T> {
@@ -818,7 +818,7 @@ foreach (var i in coll) {
 }
 ```
 
-#### 简易IDisposable实现
+## 简易IDisposable实现
 
 ```c#
 class MyClass {}
@@ -840,7 +840,7 @@ using (myClass.DoSomething(10)) {
 }
 ```
 
-#### 不通用的IDisposable实现
+## 不通用的IDisposable实现
 
 ```c#
 class MyClass {
@@ -860,7 +860,7 @@ class MyClass {
 }
 ```
 
-#### 使用最新版本的C#/.NET
+## 使用最新版本的C#/.NET
 
 - ValueTask：轻量级Task
 - ValueTuple：轻量级Tuple
@@ -884,7 +884,7 @@ void Increase(IMap<TKey, int> map, TKey key, int n) {
 }
 ```
 
-#### ref return
+## ref return
 
 ```c#
 interface IMap<TKey, TValue> {
@@ -898,9 +898,9 @@ void Increase(IMap<TKey, int> map, TKey key, int n) {
 }
 ```
 
-### 五、善用工具
+# 五、善用工具
 
-#### 常备工具
+## 常备工具
 
 - WinDBG
 - PerfView
@@ -908,7 +908,7 @@ void Increase(IMap<TKey, int> map, TKey key, int n) {
 - 某商业化Memory Profiler
 - CLRMD
 
-#### CLRMD
+## CLRMD
 
 ```c#
 CLRRuntime runtime = ...;
@@ -927,7 +927,7 @@ foreach (ulong obj in heap.EnumerateObjects()) {
 }
 ```
 
-###建议回顾
+# 建议回顾
 
 - 兵来将挡，水来土掩
 - 了解内存布局
@@ -935,5 +935,5 @@ foreach (ulong obj in heap.EnumerateObjects()) {
 - 编写不通用代码
 - 善用工具
 
-### Q & A
+# Q & A
 
