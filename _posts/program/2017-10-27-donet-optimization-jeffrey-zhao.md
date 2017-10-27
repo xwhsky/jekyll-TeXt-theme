@@ -4,12 +4,7 @@ title: .NET性能优化的几点建议
 tag: c# optimization
 ---
 
-> 本文引用自赵劼老师2017年QCon演讲的PPT内容
->
-> [原文阅读](http://zhaojie.me/dotnet-perf/slides/index.html#/7)
-
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+> 本文引用自赵劼老师2017年QCon演讲的PPT内容[原文阅读](http://zhaojie.me/dotnet-perf/slides/index.html#/1)
 
 
 ## 自我介绍
