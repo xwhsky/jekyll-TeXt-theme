@@ -4,8 +4,8 @@ title: About
 key: page-about
 ---
 
-Just say something about yourself. :+1:
+Just say something about myself. :+1:
 
-{% highlight javascript %}
-(() => console.log('hello, world!'))();
-{% endhighlight %}
+```c#
+Console.WriteLine("Hello, World!");
+```
