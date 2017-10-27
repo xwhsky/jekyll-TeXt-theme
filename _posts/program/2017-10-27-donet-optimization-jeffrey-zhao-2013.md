@@ -1,6 +1,6 @@
 ---
 layout: post
-title: .NET性能优化的几点建议（2013年）
+title: C#性能优化实践（2013年）
 category: c#,optimization
 ---
 
