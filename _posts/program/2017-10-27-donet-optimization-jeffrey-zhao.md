@@ -5,8 +5,8 @@ tag: c# optimization
 ---
 
 > 本文引用自赵劼老师2017年QCon演讲的PPT内容
-
-赵劼 @ 2017.10
+>
+> [原文阅读](http://zhaojie.me/dotnet-perf/slides/index.html#/7)
 
 ## 自我介绍
 
