@@ -39,9 +39,11 @@ This article is structured as follows. In Section 2, we present a basic framewor
 ### 2.1 The model and the parameter estimation 
 
 The GWR model extends the traditional regression framework by allowing parameters to be estimated locally so that the model can be expressed as 
+
 $$
 Y_i=\beta_0(u_i,v_i)+\sum_k\beta_k(u_i,v_i)X_{ik}+\varepsilon_i   \quad  i=1,2\cdots n \quad \quad (1)
 $$
+
 where $(u_i,v_i)$ denotes the coordinates of the point i in space, $\beta_0(u_i,v_i)$ represents the intercept value, and $\beta_k(u_i,v_i)$ is a set of values of parameters at point i. Unlike the ‘fixed’ coefficient estimates over space in the global model, this model allows the parameter estimates to vary across space and is therefore likely to apture local effects. 
 
 To calibrate the model, it is assumed that the observed data close to point i have a greater influence in the estimation of the k(ui,vi) parameters than the data located farther from observation i. The estimation of parameters k(ui,vi) is given by Equation (2) 
