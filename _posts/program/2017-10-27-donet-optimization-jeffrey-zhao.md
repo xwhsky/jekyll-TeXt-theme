@@ -8,14 +8,14 @@ category: c#,optimization
 
 赵劼 @ 2017.10
 
-###自我介绍
+# 自我介绍
 
 - 赵劼 / 老赵 / 赵姐夫 / Jeffrey Zhao
 - 2011年前：互联网
 - 2011年起：IBM / JPMorgan Chase & Co.
 - 编程语言，代码质量，性能优化……
 - 云计算，机器学习，大数据，AI……一窍不通
-###说在前面
+### 说在前面
 - 先评测，再优化
 - 专注优化瓶颈
 - 重视性能，保持性能导向思维
@@ -67,7 +67,7 @@ string Concat(int n, string a, string b, string c, string d) {
 
 ### 一：了解内存布局
 
-####老生常谈
+#### 老生常谈
 
 - 引用类型
   - 分配在托管堆
