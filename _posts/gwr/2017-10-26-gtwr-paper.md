@@ -3,9 +3,6 @@ layout: post
 title: Geographically and temporally weighted regression for modeling spatio-temporal variation in house prices
 tag: gtwr
 ---
-
-<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
 Bo Huang , Bo Wu & Michael Barry 
 
 ## Abstract

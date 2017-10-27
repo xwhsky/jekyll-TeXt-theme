@@ -291,7 +291,7 @@ class MyItem : InplaceBinaryTreeNode<MyItem> { }
 
 ## 二：迎合GC编程
 
-> **Roslyn Team: **
+>**Roslyn Team:**
 >
 > You might think that building a responsive .NET Framework app is all about algorithms, such as using quick sort instead of bubble sort, but that's not the case. The biggest factor in building a responsive app is allocating memory, especially when your app is very large or processes large amounts of data.																		
 
