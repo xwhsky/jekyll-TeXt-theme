@@ -1,7 +1,7 @@
 ---
 layout: post
 title: .NET单变量2G内存限制
-category: C#
+tag: c#
 permalink: /program/
 picture_frame: shadow #图片框样式，加阴影
 typora-copy-images-to: ..\..\images\_posts

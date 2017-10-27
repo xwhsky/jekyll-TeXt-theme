@@ -1,7 +1,7 @@
 ---
 layout: post
 title: C#性能优化实践（2013年）
-category: c#,optimization
+tag: c#,optimization
 ---
 
 > 转自自赵劼2013年InfoQ的内容
