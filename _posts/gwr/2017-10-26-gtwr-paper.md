@@ -5,6 +5,21 @@ tag: gtwr
 ---
 Bo Huang , Bo Wu & Michael Barry 
 
+```flow
+st=>start: Start:>https://www.zybuluo.com
+io=>inputoutput: verification
+op=>operation: Your Operation
+cond=>condition: Yes or No?
+sub=>subroutine: Your Subroutine
+e=>end
+
+st->io->op->cond
+cond(yes)->e
+cond(no)->sub->io
+```
+
+
+
 ## Abstract
 
 By incorporating temporal effects into the geographically weighted regression (GWR) model, an extended GWR model, geographically and temporally weighted regression (GTWR), has been developed to deal with both spatial and temporal nonstationarity simultaneously in real estate market data. Unlike the standard GWR model, GTWR integrates both temporal and spatial information in the weighting matrices to capture spatial and temporal heterogeneity. The GTWR design embodies a local weighting scheme wherein GWR and temporally weighted regression (TWR) become special cases of GTWR. In order to test its improved performance, GTWR was compared with global ordinary least squares, TWR, and GWR in terms of goodness-of-fit and other statistical measures using a case study of residential housing sales in the city of Calgary, Canada, from 2002 to 2004. The results showed that there were substantial benefits in modeling both spatial and temporal nonstationarity simultaneously. In the test sample, the TWR, GWR, and GTWR models, respectively, reduced absolute errors by 3.5%, 31.5%, and 46.4% relative to a global ordinary least squares model. More impressively, the GTWR model demonstrated a better goodness-of-fit (0.9282) than the TWR model (0.7794) and the GWR model (0.8897). McNamara’s test supported the hypothesis that the improvements made by GTWR over the TWR and GWR models are statistically significant for the sample data. 
