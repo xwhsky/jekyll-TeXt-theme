@@ -81,7 +81,7 @@ string Concat(int n, string a, string b, string c, string d) {
 
 #### 获取对象尺寸
 
-```shell
+```assembly
 > !dumpheap -stat
               MT    Count    TotalSize Class Name
 ...
@@ -205,7 +205,7 @@ struct MyStruct {
 new MyStruct[3]; // 48 bytes (24 + 8 * 3)
 ```
 
-```shell
+```assembly
 > !do 0000000002932e38 
 ...
 Fields:
