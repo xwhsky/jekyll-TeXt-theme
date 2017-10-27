@@ -47,9 +47,11 @@ $$
 where $(u_i,v_i)$ denotes the coordinates of the point i in space, $\beta_0(u_i,v_i)$ represents the intercept value, and $\beta_k(u_i,v_i)$ is a set of values of parameters at point i. Unlike the ‘fixed’ coefficient estimates over space in the global model, this model allows the parameter estimates to vary across space and is therefore likely to apture local effects. 
 
 To calibrate the model, it is assumed that the observed data close to point i have a greater influence in the estimation of the k(ui,vi) parameters than the data located farther from observation i. The estimation of parameters k(ui,vi) is given by Equation (2) 
+
 $$
 \hat\beta(u_i,v_i)=[X^TW(u_i,v_i)X]^{-1}X^TW(u_i,v_i) Y  \quad \quad (2)
 $$
+
 where $W(u_i,v_i)$is an $n *n$ matrix whose diagonal elements denote the geographical weighting of bservation data for observation i, and the off-diagonal elements are zero. The weight matrix is computed for each point i at which parameters are estimated.
 
 ### 2.2 Weighting matrix specification 
@@ -57,16 +59,21 @@ where $W(u_i,v_i)$is an $n *n$ matrix whose diagonal elements denote the geograp
 The weight matrix in GWR represents the different importance of each individual observation in the data set used to estimate the parameters at location i. In general, the closer an observation is to i, the greater the weight. Thus, each point estimate i has a unique weight matrix.  
 
 In essence, there are two weighting regimes that can be used: fixed kernel and adaptive kernel. For the fixed kernel, distance is constant but the number of nearest neighbors varies. For the adaptive kernel, distance varies but the number of neighbors remains constant. The most commonly used kernels are Gaussian distance decay-based functions (Fotheringham et al. 2002): 
+
 $$
 W_{i,j}=\exp(-\frac {d_{ij}^2}{h^2})  \quad \quad (3)
 $$
+
 where $h$ is a non-negative parameter known as bandwidth, which produces a decay of influence with distance and $d_{ij}$ is the measure of distance between location $i$ and $j$. Using point coordinates$ (x_i,y_i)$ and $ (x_j,y_j)j$, the distance is usually defined as a Euclidean distance
+
 $$
 d_{ij}=\sqrt{(x_i-x_j)^2+(y_i-y_j)^2} \quad \quad (4)
 $$
+
 According to Equations (3) and (4), if i and j coincide, the weight of that observation will be unity, and the weight of other data will decrease according to the Gaussian curve when the distance between i and j  increases. Other commonly used weighting functions include the bisquare function (Fotheringham et al. 2002) and the tri-cube kernel function (McMillen 1996). 
 
 To avoid (1) exaggerating the degree of nonstationarity present in the areas where data are sparse or (2) mask subtle spatial nonstationarity where the data are dense (Paez et al. 2002), adaptive weighting functions are used to change the kernel size to suit localized observation patterns. Kernels have larger bandwidths where the data points are sparsely distributed and smaller ones where the data are plentiful. By adapting the bandwidth, the same number of nonzero weights is used for each regression point i in the analysis. For example, the adaptive bi-square weighting function is the following: 
+
 $$
 W_{ij}=
 \begin{cases}
@@ -74,16 +81,42 @@ W_{ij}=
 0 &\mbox{otherwise}\\
 \end{cases}  \quad \quad (5)
 $$
+
 where $h_i$stands for the bandwidth particular to location $i$.
 
 ### 2.3 Choosing an appropriate bandwidth 
 
 In the process of calibrating a GWR model, the weighting model should first be decided. This can be done by cross-validation. Suppose that the predicted value of $y_i$ from GWR is denoted as a function of $h$ by ,$\hat y_i(h)$ the sum of the squared error may then be written as 
+
 $$
 CVRSS(h)=\sum _i(y_i-\hat y_{\neq1}(h))^2  \quad \quad (6)
 $$
+
 In practice, plotting CVRSS(h) against the parameter h can provide guidance on selecting an appropriate value of the parameter or it can be obtained automatically with an optimization technique by minimizing Equation (6) in terms of goodness-of-fit statistics or the corrected Akaike information criterion (AIC) (Hurvich et al. 1998, Fotheringham et al. 2002). 
 
 ## 3. Extending GWR with temporal variations 
 
 Since complex temporal effects can also lead to nonstationarity in real estate prices, this article demonstrates how to incorporate temporal information in the GWR model to develop a GTWR model that captures both spatial and temporal heterogeneity and improves its goodness-of-fit. 
+
+###  3.1 Accounting for spatio-temporal nonstationarity 
+
+In practice, the GWR model accounts for spatial nonstationarity in parameter estimates by constructing a weight matrix based on distances between estimation point i and all other observations. Conventionally, the time variable is accommodated separately by adjusting the sale price observations to a common date, often using some adapted form of present value or future value calculation (Wang 2006) .
+
+As an alternative (or perhaps complementary) approach, we accounted for spatiotemporal nonstationary in parameter estimates by constructing the weight matrix based on distances determined from (x, y, t)  coordinates between observation i and all other observations in line with the GWR technique. Thus, the  GTWR model can be expressed as 
+
+$$
+Y_i=\beta_0(u_i,v_i,t_i)+\sum_k\beta_k(u_i,v_i,t_i)X_{ik}+\varepsilon_i   \quad  i=1,2\cdots n \quad \quad (7)
+$$
+
+Essentially, the problem here is to provide estimates of k(ui,vi,ti), for each variable k and each space–time location i. Similarly, the estimation of k(ui,vi,ti) can be expressed as follows: 
+
+$$
+\hat\beta(u_i,v_i,t_i)=[X^TW(u_i,v_i,t_i)X]^{-1}X^TW(u_i,v_i,t_i) Y  \quad \quad (8)
+$$
+
+where $W(u_i,v_i,t_i)=diag(a_{i1},a_{i2},a_{i3},...,a_{in})$and $n$ is the number of observations. Here the diagonal elements $a_{ij(1 \leq j \leq n)}$are space–time distance functions of  $(u,v,t)$corresponding to the weights when calibrating a weighted regression adjacent to observation point $i$. Thus, the spatio-temporal GTWR model relies on the appropriate specification of the space–time distance decay function  $a_{ij}$. To calibrate the model, it is still assumed that the observed data points ‘close’ to point i in the space–time coordinate system have a greater influence in the estimation of the $\beta_k (u_i,v_i,t_i)$ parameters than the data located farther from observation $i$. In this sense, the definition of ‘close’ incorporates two variables: temporal closeness and spatial closeness. Hence, defining and measuring the so-called closeness in a space–time coordinate system is a key problem in the GTWR model. 
+
+Before accounting for the spatio-temporal distance function, it might be helpful to discuss some underlying notions on the measurement of ‘closeness’. Suppose that the observed data are located in a three-dimensional space–time coordinate system and consider those points close to location $i$. For instance, if the space–time coordinate system has the same scale effect on distance, we can draw a sphere of certain radius, say r, around a particular regression point $i$ and calibrate a regression model using ordinary least squares (OLS) only on the observations within this sphere. The $\beta_k (u_i,v_i,t_i)$ obtained can then be considered as an estimate of the associations between the variables in and around $i$.
+
+However, location and time are usually measured in different units (in our case, location in meters and time in days), thus they have different scale effects. It seems to be more appropriate to use an ellipsoidal coordinate system to measure the ‘closeness’ between a regression point and its surrounding observed points. Figure 1 shows an example of the proposed spatio-temporal distance. It suggests that a simple and straightforward way of modeling a distance of time is to integrate it directly with spatial distance into the spatiotemporal distance function. 
+
