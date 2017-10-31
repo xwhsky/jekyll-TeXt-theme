@@ -16,6 +16,7 @@ pm2.5 = aod + wind + temperature + relativehumidity + hbpl
 $$
 
 简化为
+
 $$
 y = X_{aod} + X_{wind} + X_{temp} + X_{rh} + X_{hbpl}
 $$
@@ -23,6 +24,7 @@ $$
 ### OLS模型
 
 在线性回归中，对于公式。
+
 $$
 Y =X  \beta + \epsilon
 $$
@@ -65,6 +67,7 @@ $$
 *包含p个自变量，n条样本记录。*
 
 根据最小二乘法则，可得到
+
 $$
 \hat\beta = (X'X)^{-1}X' y
 $$
@@ -96,6 +99,7 @@ $$
 $$
 
 参照最小二乘原理，可得到
+
 $$
 \hat\beta_i = (X'W_iX)^{-1}X'W_i y
 $$
@@ -114,6 +118,7 @@ w_{i1} &... & 0 & ... &0\\
 $$
 
 其中，这里的帽子矩阵为
+
 $$
 S_i =X_i (X'W_iX)^{-1}X'W_i
 $$
@@ -126,11 +131,11 @@ $$
 
 W称作空间权函数，在样本点i上，都有其他所有点对i点的影响力，有距离阈值法、距离反比法、Gauss函数法、截尾型函数法等。总体都是随着距离而递减的函数，区间在[0,1]。
 
-![gwr_kernel](D:\github\xwhsky.github.io\images\_posts\gwr_kernel.png)
+![gwr_kernel](https://github.com/xwhsky/xwhsky.github.io/blob/master/images/_posts/\gwr_kernel.png)
 
 以某个权函数为例（高斯函数下图），带宽BandWidth的取值至关重要。
 
-![gwr_one_kernel](D:\github\xwhsky.github.io\images\_posts\gwr_one_kernel.png)
+![gwr_one_kernel](https://github.com/xwhsky/xwhsky.github.io/blob/master/images/_posts/\gwr_one_kernel.png)
 
 - 当带宽选取过大，即曲线很胖，则点周围大部分数据都具有较强的影响力，到无穷大时正好是OLS的模型。
 - 当带宽选取过小，即曲线很瘦，则点周围大部分数据都不具备影响力，到无穷小是则每个点的影像取决于自己，此时$R^2=1$产生过拟合现象。
@@ -146,9 +151,11 @@ AIC=-2ln(\hat\theta_L,x)+2q
 $$
 
 在gwr中，即为
+
 $$
 AIC_c =2n\log_e(\hat\sigma)+n\log_e(2\pi)+n |\frac{n+2 tr(s)}{n-2-tr(s)}|
 $$
+
 其中，$\hat\sigma$表示估计标准差，公式为
 $$
 \hat\sigma=\sqrt{\frac{RSS}{n}}=\sum_{i}(y_i-\hat y_i)/(n-2v1+v2)
@@ -170,6 +177,7 @@ GTWR在此基础上，考虑数据在**时空**上的影像，将W改进为不�
 而时间和空间的尺度不一致，所以需要一个时空比例的参数Scale来衡量两者的权重大小。
 
 即
+
 $$
 距离=d^2x+d^2y+Scale*d^2t
 $$
@@ -180,4 +188,4 @@ $$
 
 依次遍历scale，获取R2最大下的scale。如下图所示。
 
-![gtwr_time_spatial_scale](D:\github\xwhsky.github.io\images\_posts\gtwr_time_spatial_scale.png)
+![gtwr_time_spatial_scale](https://github.com/xwhsky/xwhsky.github.io/blob/master/images/_posts/\gtwr_time_spatial_scale.png)
