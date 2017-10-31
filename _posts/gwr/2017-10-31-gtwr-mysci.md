@@ -131,11 +131,11 @@ $$
 
 W称作空间权函数，在样本点i上，都有其他所有点对i点的影响力，有距离阈值法、距离反比法、Gauss函数法、截尾型函数法等。总体都是随着距离而递减的函数，区间在[0,1]。
 
-![gwr_kernel](https://github.com/xwhsky/xwhsky.github.io/blob/master/images/_posts/\gwr_kernel.png)
+![gwr_kernel](https://raw.githubusercontent.com/xwhsky/xwhsky.github.io/master/images/_posts/gwr_kernel.png)
 
 以某个权函数为例（高斯函数下图），带宽BandWidth的取值至关重要。
 
-![gwr_one_kernel](https://github.com/xwhsky/xwhsky.github.io/blob/master/images/_posts/\gwr_one_kernel.png)
+![gwr_one_kernel](https://raw.githubusercontent.com/xwhsky/xwhsky.github.io/master/images/_posts/gwr_one_kernel.png)
 
 - 当带宽选取过大，即曲线很胖，则点周围大部分数据都具有较强的影响力，到无穷大时正好是OLS的模型。
 - 当带宽选取过小，即曲线很瘦，则点周围大部分数据都不具备影响力，到无穷小是则每个点的影像取决于自己，此时$R^2=1$产生过拟合现象。
@@ -188,4 +188,4 @@ $$
 
 依次遍历scale，获取R2最大下的scale。如下图所示。
 
-![gtwr_time_spatial_scale](https://github.com/xwhsky/xwhsky.github.io/blob/master/images/_posts/\gtwr_time_spatial_scale.png)
+![gtwr_time_spatial_scale](https://raw.githubusercontent.com/xwhsky/xwhsky.github.io/master/images/_posts/gtwr_time_spatial_scale.png)
