@@ -153,18 +153,21 @@ $$
 在gwr中，即为
 
 $$
-AIC_c =2n\log_e(\hat\sigma)+n\log_e(2\pi)+n |\frac{n+2 tr(s)}{n-2-tr(s)}|
+AIC_c =2n\log_e(\hat\sigma)+n\log_e(2\pi)+n |\frac{n+tr(s)}{n-2-tr(s)}|
 $$
 
 其中，$\hat\sigma$表示估计标准差，公式为
 
 
 $$
-\hat\sigma=\sqrt{\frac{RSS}{n}}=\sum_{i}(y_i-\hat y_i)/(n-2v1+v2)
+\hat\sigma=\sqrt{\frac{RSS}{n}}=\sum_{i}(y_i-\hat y_i)/(n-2v1_+v_2)
 $$
 
-
-s表示帽子矩阵。tr(s)表示矩阵的迹。
+$$v_1和v_2$$ 值很相近，因此除数可以该做 $$n-v_1$$ 。
+$$
+v_1=tr(S)
+$$
+s表示帽子矩阵。$$tr(s)$$ 表示矩阵的迹。
 
 ### GTWR模型
 

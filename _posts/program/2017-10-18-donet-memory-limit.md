@@ -57,5 +57,25 @@ double[] array = new double[20000*20000];
 
 
 
+## 瓶颈
 
+> 更新于2017-11-2
+
+上述方法，虽然使得单变量的存储突破了2G限制，但对于一个数组来说，其数组的最大长度也依旧有瓶颈。
+
+在.NET 4.5 环境下，字节数组的最大长度不能大于2147483591。对于其他数值类型，长度不能大于2146435071。
+
+这份说明同样在破解2G变量大小限制的MSDN官网有说明，之前没仔细翻到后面。
+
+原文中说到：
+
+> Using this element in your application configuration file enables arrays that are larger than 2 GB in size, but does not change other limits on object size or array size:
+>
+> - The maximum number of elements in an array is [UInt32.MaxValue](https://docs.microsoft.com/en-us/dotnet/api/system.uint32.maxvalue).
+> - The maximum index in any single dimension is 2,147,483,591 (0x7FFFFFC7) for byte arrays and arrays of single-byte structures, and 2,146,435,071 (0X7FEFFFFF) for other types.
+> - The maximum size for strings and other non-array objects is unchanged.
+
+
+
+[^官网参考]: https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/runtime/gcallowverylargeobjects-element
 
