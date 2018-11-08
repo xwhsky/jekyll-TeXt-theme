@@ -62,7 +62,8 @@ excerpt_separator: <!--more-->
 
 ## Build ##
 markdown: kramdown
-highlighter: rouge
+#highlighter: rouge
+highlighter: tomorrow
 permalink: date
 
 ## Plugins ##

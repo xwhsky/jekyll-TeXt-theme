@@ -1,8 +1,8 @@
 ---
 layout: post
-title: 深圳公安信息化顶层设计
+title: 深圳公安信息化顶层设计-前一章
 key: 20181108
-tags: huawei，police，design
+tags: huawei, police, design
 picture_frame: shadow
 modify_date: 20181108
 ---
